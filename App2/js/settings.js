@@ -133,7 +133,7 @@ function renderSettings() {
     </div>
 
     <div style="text-align:center;padding:20px 0 8px;color:var(--text-muted);font-size:0.78rem">
-      Finanzen App · Lokale PWA · Alle Daten bleiben auf deinem Gerät · App2 · Build v1
+      Finanzen App · Lokale PWA · Alle Daten bleiben auf deinem Gerät · App2 · Build v2
     </div>
   `;
 

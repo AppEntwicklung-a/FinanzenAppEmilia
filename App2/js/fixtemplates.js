@@ -176,6 +176,22 @@ function fixTemplateForm(t) {
   `;
 }
 
+// Einen neu angelegten Posten automatisch in alle genutzten Monate übernehmen
+async function applyNewTemplateEverywhere(tpl) {
+  const allEntries = await dbGetAll('entries');
+  const keys = new Set([
+    ...allEntries.map(e => `${e.year}-${e.month}`),
+    ...fixSeededKeys(),
+    `${state.year}-${state.month}`
+  ]);
+  for (const key of keys) {
+    const [year, month] = key.split('-').map(Number);
+    const exists = allEntries.some(e =>
+      e.year === year && e.month === month && e.fromTemplate === tpl.id);
+    if (!exists) await dbPut('entries', templateToEntry(tpl, year, month));
+  }
+}
+
 async function saveFixTemplate(existingId) {
   const category = document.getElementById('ftf-category').value;
   const name = document.getElementById('ftf-name').value.trim();
@@ -185,9 +201,13 @@ async function saveFixTemplate(existingId) {
   if (!name) { showToast('Bitte Name eingeben'); return; }
   if (isNaN(amount) || amount < 0) { showToast('Bitte gültigen Betrag eingeben'); return; }
 
-  await dbPut('fixtemplates', { id: existingId || undefined, category, name, payment, amount });
+  const saved = await dbPut('fixtemplates', { id: existingId || undefined, category, name, payment, amount });
+
+  // Neuer Posten -> automatisch in alle genutzten Monate übernehmen
+  if (!existingId) await applyNewTemplateEverywhere(saved);
+
   closeModal();
-  showToast(existingId ? 'Posten aktualisiert' : 'Posten hinzugefügt');
+  showToast(existingId ? 'Posten aktualisiert' : 'Posten in alle Monate übernommen');
   renderFixTemplateList();
 }
 
