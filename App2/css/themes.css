@@ -1,0 +1,243 @@
+/* ============================================================
+   Design-Vorlagen — 3 Paletten, je hell + dunkel
+   Aktiviert über  <html data-theme="sage|slate|sand">  +  .dark
+   (.dark wird per JS gesetzt: Hell / Dunkel / System)
+   ============================================================ */
+
+/* Gemeinsame Dunkel-Eigenschaften (Schatten, native Controls).
+   Farbtoken kommen aus den themenspezifischen Blöcken weiter unten. */
+.dark {
+  color-scheme: dark;
+  --shadow: 0 1px 4px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.2);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.25);
+}
+
+/* ---------- 1 · SALBEI (warmes Grün) ---------- */
+[data-theme="sage"] {
+  --bg-primary: #F5F2ED;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-input: #F0EDE8;
+  --text-primary: #2C2C2A;
+  --text-secondary: #6B6B67;
+  --text-muted: #9E9E9A;
+  --accent: #7C9E7E;
+  --accent-light: #EAF0EA;
+  --accent-dark: #5A7D5C;
+  --danger: #C0624A;
+  --danger-light: #FAF0EE;
+  --warning: #C49A3C;
+  --warning-light: #FBF5E6;
+  --success: #5A8F6A;
+  --success-light: #EBF3ED;
+  --border: #E2DDD8;
+  --border-strong: #C8C3BE;
+}
+[data-theme="sage"].dark {
+  --bg-primary: #1E2420;
+  --bg-secondary: #252B27;
+  --bg-card: #2A3230;
+  --bg-input: #1A201E;
+  --text-primary: #E8E4DF;
+  --text-secondary: #A8A8A4;
+  --text-muted: #6E6E6A;
+  --accent: #8FB491;
+  --accent-light: #2A3830;
+  --accent-dark: #A8C8AA;
+  --danger: #E07860;
+  --danger-light: #301A16;
+  --warning: #D4AE5C;
+  --warning-light: #2C2410;
+  --success: #70A880;
+  --success-light: #1A2E20;
+  --border: #363E3A;
+  --border-strong: #4A5450;
+}
+
+/* ---------- 2 · SCHIEFER (kühles Grau-Blau) ---------- */
+[data-theme="slate"] {
+  --bg-primary: #F4F5F7;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-input: #EDEFF2;
+  --text-primary: #1F2730;
+  --text-secondary: #586471;
+  --text-muted: #93A0AD;
+  --accent: #46688A;
+  --accent-light: #E8EDF3;
+  --accent-dark: #34506B;
+  --danger: #B5564B;
+  --danger-light: #F8EDEB;
+  --warning: #AE8636;
+  --warning-light: #F6F0E3;
+  --success: #4E8A6B;
+  --success-light: #E8F1EC;
+  --border: #E1E5EA;
+  --border-strong: #C6CDD5;
+}
+[data-theme="slate"].dark {
+  --bg-primary: #14181D;
+  --bg-secondary: #1B2026;
+  --bg-card: #212730;
+  --bg-input: #13171C;
+  --text-primary: #E5E9ED;
+  --text-secondary: #A2ACB6;
+  --text-muted: #6C7884;
+  --accent: #6F9BC0;
+  --accent-light: #1E2B38;
+  --accent-dark: #92B6D6;
+  --danger: #D87A6E;
+  --danger-light: #2E1715;
+  --warning: #CBA75C;
+  --warning-light: #2A2412;
+  --success: #6FA98A;
+  --success-light: #15281F;
+  --border: #2C333C;
+  --border-strong: #3E4751;
+}
+
+/* ---------- 3 · SAND (warmes Taupe / Bronze) ---------- */
+[data-theme="sand"] {
+  --bg-primary: #F3EEE7;
+  --bg-secondary: #FDFBF7;
+  --bg-card: #FDFBF7;
+  --bg-input: #EDE7DD;
+  --text-primary: #2B2722;
+  --text-secondary: #6A635A;
+  --text-muted: #9C948A;
+  --accent: #8E6F4A;
+  --accent-light: #F0E8DC;
+  --accent-dark: #6E5436;
+  --danger: #B25E47;
+  --danger-light: #F8EEEA;
+  --warning: #B0852F;
+  --warning-light: #F6F0E1;
+  --success: #6E8C5A;
+  --success-light: #EDF1E7;
+  --border: #E4DBCF;
+  --border-strong: #CDC1B1;
+}
+[data-theme="sand"].dark {
+  --bg-primary: #211E18;
+  --bg-secondary: #2A261F;
+  --bg-card: #2F2A22;
+  --bg-input: #1A1712;
+  --text-primary: #ECE5DA;
+  --text-secondary: #B0A695;
+  --text-muted: #756C5E;
+  --accent: #C49A6C;
+  --accent-light: #332A1E;
+  --accent-dark: #D9B488;
+  --danger: #D87D63;
+  --danger-light: #2E1A14;
+  --warning: #CFA85A;
+  --warning-light: #2A2310;
+  --success: #93A86F;
+  --success-light: #1F2616;
+  --border: #383027;
+  --border-strong: #4C4334;
+}
+
+/* ---------- 4 · GRAUSTUFEN (schwarz / weiß / grau, Beträge bleiben farbig) ---------- */
+[data-theme="mono"] {
+  --bg-primary: #F4F4F4;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-input: #ECECEC;
+  --text-primary: #1A1A1A;
+  --text-secondary: #585858;
+  --text-muted: #909090;
+  --accent: #4A4A4A;
+  --accent-light: #ECECEC;
+  --accent-dark: #2E2E2E;
+  /* Summen / Beträge bleiben farbig */
+  --danger: #BD5A45;
+  --danger-light: #F8EDEA;
+  --warning: #B5852F;
+  --warning-light: #F6F0E3;
+  --success: #4F8A66;
+  --success-light: #EBF2EC;
+  --border: #E2E2E2;
+  --border-strong: #C6C6C6;
+}
+[data-theme="mono"].dark {
+  --bg-primary: #161616;
+  --bg-secondary: #1E1E1E;
+  --bg-card: #242424;
+  --bg-input: #131313;
+  --text-primary: #ECECEC;
+  --text-secondary: #A6A6A6;
+  --text-muted: #6E6E6E;
+  --accent: #8A8A8A;
+  --accent-light: #2A2A2A;
+  --accent-dark: #A0A0A0;
+  /* Summen / Beträge bleiben farbig */
+  --danger: #D87A6E;
+  --danger-light: #2E1715;
+  --warning: #CBA75C;
+  --warning-light: #2A2412;
+  --success: #6FA98A;
+  --success-light: #15281F;
+  --border: #2C2C2C;
+  --border-strong: #3E3E3E;
+}
+
+/* Themenauswahl-Karte (Einstellungen) */
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.theme-option {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 10px;
+  background: var(--bg-input);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: border-color 0.15s, background 0.15s;
+}
+.theme-option:hover { background: var(--border); }
+.theme-option.active {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+.theme-swatch {
+  display: flex;
+  border-radius: 6px;
+  overflow: hidden;
+  width: 100%;
+  height: 30px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.theme-swatch span { flex: 1; }
+.theme-option .theme-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.mode-toggle {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 4px;
+}
+.mode-toggle button {
+  padding: 8px 6px;
+  border-radius: var(--radius-xs);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: background 0.15s, color 0.15s;
+}
+.mode-toggle button.active {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}

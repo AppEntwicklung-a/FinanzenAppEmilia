@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App zurücksetzen</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #F5F2ED; color: #2C2C2A; display: flex; min-height: 100vh;
+      align-items: center; justify-content: center; margin: 0; padding: 24px; }
+    .box { max-width: 360px; text-align: center; }
+    h1 { font-size: 1.2rem; margin: 0 0 8px; }
+    p { color: #6B6B67; line-height: 1.5; font-size: 0.95rem; }
+    #log { margin-top: 14px; font-size: 0.82rem; color: #5A7D5C; white-space: pre-line; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>App wird aktualisiert…</h1>
+    <p>Alter Cache und Service Worker werden entfernt. Deine Einträge bleiben erhalten.</p>
+    <div id="log"></div>
+  </div>
+  <script>
+    const log = m => { document.getElementById('log').textContent += m + '\n'; };
+    (async () => {
+      try {
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(regs.map(r => r.unregister()));
+          log('✓ Service Worker entfernt (' + regs.length + ')');
+        }
+        if (window.caches) {
+          const keys = await caches.keys();
+          await Promise.all(keys.map(k => caches.delete(k)));
+          log('✓ Caches gelöscht (' + keys.length + ')');
+        }
+      } catch (e) {
+        log('Hinweis: ' + e.message);
+      }
+      log('Lade neue Version…');
+      setTimeout(() => location.replace('./index.html?fresh=' + Date.now()), 800);
+    })();
+  </script>
+</body>
+</html>
